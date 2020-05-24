@@ -17,7 +17,7 @@ class App extends React.Component {
 
   render() {
     return (
-      <div>
+      <div id='container'>
         <h2>Pomodoro Clock</h2>
         <BreakLength breakLength={this.state.breakLength} />
         <SessionLength sessionLength={this.state.sessionLength} />
