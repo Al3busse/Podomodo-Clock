@@ -3,6 +3,7 @@ import "./App.css";
 import BreakLength from "./components/BreakLength";
 import SessionLength from "./components/SessionLength";
 import Timer from "./components/Timer";
+import Alarm from "./sound/BeepSound.wav";
 
 class App extends React.Component {
   constructor() {
@@ -136,7 +137,7 @@ class App extends React.Component {
         <audio
           id='beep'
           preload='auto'
-          src='https://goo.gl/65cBl1'
+          src={Alarm}
           ref={(audio) => {
             this.audioAlarm = audio;
           }}
