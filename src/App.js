@@ -1,7 +1,7 @@
 import React from "react";
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { Row, Col } from "react-bootstrap";
+import { Row, Col, Container } from "react-bootstrap";
 import BreakLength from "./components/BreakLength";
 import SessionLength from "./components/SessionLength";
 import LongBreakLength from "./components/LongBreakLength";
@@ -156,7 +156,7 @@ class App extends React.Component {
 
   render() {
     return (
-      <div id='container'>
+      <Container id='container' fluid>
         <h2>Pomodoro Clock</h2>
         <Row>
           <Col>
@@ -205,7 +205,7 @@ class App extends React.Component {
             this.audioAlarm = audio;
           }}
         />
-      </div>
+      </Container>
     );
   }
 }

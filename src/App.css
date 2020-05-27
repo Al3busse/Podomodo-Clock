@@ -1,6 +1,17 @@
+#root {
+  height: 100vh;
+  background-color: gray;
+  font-family: "Chelsea Market", "Roboto", -apple-system, BlinkMacSystemFont,
+    "Segoe UI", "Oxygen", "Ubuntu";
+}
+
 #container {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+}
+
+h2 {
+  padding: 30px;
 }
