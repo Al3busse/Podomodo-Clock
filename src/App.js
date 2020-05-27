@@ -1,7 +1,10 @@
 import React from "react";
 import "./App.css";
+import "bootstrap/dist/css/bootstrap.min.css";
+import { Row, Col } from "react-bootstrap";
 import BreakLength from "./components/BreakLength";
 import SessionLength from "./components/SessionLength";
+import LongBreakLength from "./components/LongBreakLength";
 import Timer from "./components/Timer";
 import Alarm from "./sound/BeepSound.wav";
 
@@ -11,23 +14,29 @@ class App extends React.Component {
 
     this.state = {
       breakLength: 5,
+      longBreakLength: 20,
       sessionLength: 25,
       timerCount: 25,
       timerSeconds: 0,
       currentTimer: "Session",
+      breakCounter: 0,
+      timerRunning: false,
     };
     this.onIncreaseSessionLength = this.onIncreaseSessionLength.bind(this);
     this.onDecreaseSessionLength = this.onDecreaseSessionLength.bind(this);
     this.onIncreaseBreakLength = this.onIncreaseBreakLength.bind(this);
     this.onDecreaseBreakLength = this.onDecreaseBreakLength.bind(this);
+    this.onIncreaseLongBreakLength = this.onIncreaseLongBreakLength.bind(this);
+    this.onDecreaseLongBreakLength = this.onDecreaseLongBreakLength.bind(this);
     this.onResetTimer = this.onResetTimer.bind(this);
     this.updateTimerMinute = this.updateTimerMinute.bind(this);
     this.timerCountdown = this.timerCountdown.bind(this);
     this.playAlarm = this.playAlarm.bind(this);
+    this.timerRunningSwitch = this.timerRunningSwitch.bind(this);
   }
 
   onIncreaseSessionLength() {
-    if (this.state.sessionLength < 60) {
+    if (this.state.sessionLength < 60 && !this.state.timerRunning) {
       this.setState({
         sessionLength: this.state.sessionLength + 1,
         timerCount: this.state.sessionLength + 1,
@@ -37,7 +46,7 @@ class App extends React.Component {
     }
   }
   onDecreaseSessionLength() {
-    if (this.state.sessionLength > 1) {
+    if (this.state.sessionLength > 1 && !this.state.timerRunning) {
       this.setState({
         sessionLength: this.state.sessionLength - 1,
         timerCount: this.state.sessionLength - 1,
@@ -47,7 +56,7 @@ class App extends React.Component {
     }
   }
   onIncreaseBreakLength() {
-    if (this.state.breakLength < 60) {
+    if (this.state.breakLength < 60 && !this.state.timerRunning) {
       this.setState({ breakLength: this.state.breakLength + 1 });
     } else {
       return;
@@ -55,8 +64,24 @@ class App extends React.Component {
   }
 
   onDecreaseBreakLength() {
-    if (this.state.breakLength > 1) {
+    if (this.state.breakLength > 1 && !this.state.timerRunning) {
       this.setState({ breakLength: this.state.breakLength - 1 });
+    } else {
+      return;
+    }
+  }
+
+  onIncreaseLongBreakLength() {
+    if (this.state.longBreakLength < 60 && !this.state.timerRunning) {
+      this.setState({ longBreakLength: this.state.longBreakLength + 1 });
+    } else {
+      return;
+    }
+  }
+
+  onDecreaseLongBreakLength() {
+    if (this.state.longBreakLength > 1 && !this.state.timerRunning) {
+      this.setState({ longBreakLength: this.state.longBreakLength - 1 });
     } else {
       return;
     }
@@ -80,11 +105,21 @@ class App extends React.Component {
     } else {
       this.playAlarm();
       if (this.state.currentTimer === "Session") {
-        this.setState({
-          timerCount: this.state.breakLength,
-          currentTimer: "Break",
-          timerSeconds: 0,
-        });
+        if (this.state.breakCounter === 3) {
+          this.setState({
+            timerCount: this.state.longBreakLength,
+            currentTimer: "Long Break",
+            timerSeconds: 0,
+            breakCounter: 0,
+          });
+        } else {
+          this.setState({
+            timerCount: this.state.breakLength,
+            currentTimer: "Break",
+            timerSeconds: 0,
+            breakCounter: this.state.breakCounter + 1,
+          });
+        }
       } else {
         this.setState({
           timerCount: this.state.sessionLength,
@@ -104,36 +139,64 @@ class App extends React.Component {
   onResetTimer() {
     this.setState({
       breakLength: 5,
+      longBreakLength: 20,
       sessionLength: 25,
       timerCount: 25,
       timerSeconds: 0,
       currentTimer: "Session",
+      timerRunning: false,
     });
     this.audioAlarm.pause();
     this.audioAlarm.currentTime = 0;
+  }
+
+  timerRunningSwitch() {
+    this.setState({ timerRunning: !this.state.timerRunning });
   }
 
   render() {
     return (
       <div id='container'>
         <h2>Pomodoro Clock</h2>
-        <BreakLength
-          breakLength={this.state.breakLength}
-          increaseBreak={this.onIncreaseBreakLength}
-          decreaseBreak={this.onDecreaseBreakLength}
-        />
-        <SessionLength
-          sessionLength={this.state.sessionLength}
-          increaseSession={this.onIncreaseSessionLength}
-          decreaseSession={this.onDecreaseSessionLength}
-        />
-        <Timer
-          timerCount={this.state.timerCount}
-          resetTimer={this.onResetTimer}
-          timerCountdown={this.timerCountdown}
-          currentSession={this.state.currentTimer}
-          timerSeconds={this.state.timerSeconds}
-        />
+        <Row>
+          <Col>
+            <SessionLength
+              sessionLength={this.state.sessionLength}
+              increaseSession={this.onIncreaseSessionLength}
+              decreaseSession={this.onDecreaseSessionLength}
+              timerRunning={this.state.timerRunning}
+            />
+          </Col>
+          <Col>
+            <BreakLength
+              breakLength={this.state.breakLength}
+              increaseBreak={this.onIncreaseBreakLength}
+              decreaseBreak={this.onDecreaseBreakLength}
+              timerRunning={this.state.timerRunning}
+            />
+          </Col>
+          <Col>
+            <LongBreakLength
+              longBreakLength={this.state.longBreakLength}
+              increaseLongBreak={this.onIncreaseLongBreakLength}
+              decreaseLongBreak={this.onDecreaseLongBreakLength}
+              timerRunning={this.state.timerRunning}
+            />
+          </Col>
+        </Row>
+        <Row>
+          <Col>
+            <Timer
+              timerCount={this.state.timerCount}
+              resetTimer={this.onResetTimer}
+              timerCountdown={this.timerCountdown}
+              currentSession={this.state.currentTimer}
+              timerSeconds={this.state.timerSeconds}
+              timerRunning={this.state.timerRunning}
+              timerRunningSwitch={this.timerRunningSwitch}
+            />
+          </Col>
+        </Row>
         <audio
           id='beep'
           preload='auto'

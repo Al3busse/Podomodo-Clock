@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import Button from "react-bootstrap/Button";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlay, faPause, faRedo } from "@fortawesome/free-solid-svg-icons";
 import accurateInterval from "accurate-interval";
@@ -9,33 +10,26 @@ export default class Timer extends Component {
 
     this.state = {
       intervalID: 0,
-      timerRunning: false,
-      buttonState: "Play",
     };
     this.resetButton = this.resetButton.bind(this);
     this.playButton = this.playButton.bind(this);
   }
 
   playButton() {
-    if (this.state.timerRunning === false) {
+    if (this.props.timerRunning === false) {
       var intervalID = accurateInterval(this.props.timerCountdown, 1000);
+      this.props.timerRunningSwitch();
       this.setState({
         intervalID: intervalID,
-        timerRunning: true,
-        buttonState: "Pause",
       });
     } else {
       this.state.intervalID && this.state.intervalID.clear();
-      this.setState({ timerRunning: false, buttonState: "Play" });
+      this.props.timerRunningSwitch();
     }
   }
 
   resetButton() {
     this.props.resetTimer();
-    this.setState({
-      buttonState: "Play",
-      timerRunning: false,
-    });
     this.state.intervalID && this.state.intervalID.clear();
   }
 
@@ -59,16 +53,19 @@ export default class Timer extends Component {
           </span>
         </div>
         <div>
-          <button onClick={this.playButton} id='start_stop'>
+          <Button
+            onClick={this.playButton}
+            id='start_stop'
+            variant={!this.props.timerRunning ? "primary" : "outline-primary"}
+          >
             <FontAwesomeIcon
-              icon={this.state.buttonState === "Play" ? faPlay : faPause}
+              icon={!this.props.timerRunning ? faPlay : faPause}
             />
-            {this.state.buttonState}
-          </button>
-          <button onClick={this.resetButton} id='reset'>
-            <FontAwesomeIcon icon={faRedo} />
-            Reset
-          </button>
+            {!this.props.timerRunning ? " Play" : " Pause"}
+          </Button>
+          <Button onClick={this.resetButton} id='reset' variant='danger'>
+            <FontAwesomeIcon icon={faRedo} /> Reset
+          </Button>
         </div>
       </div>
     );
