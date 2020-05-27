@@ -17,3 +17,8 @@ code {
   src: local("Chelsea Market"),
     url("./font/ChelseaMarket-Regular.ttf") format("truetype");
 }
+
+@font-face {
+  font-family: "Nova Cut";
+  src: local("NovaCut"), url("./font/NovaCut-Regular.ttf") format("truetype");
+}

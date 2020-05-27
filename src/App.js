@@ -205,6 +205,14 @@ class App extends React.Component {
             this.audioAlarm = audio;
           }}
         />
+        <Row>
+          <footer id='footer'>
+            Made by{" "}
+            <a href='https://github.com/Al3busse' id='footerA'>
+              Alejandro Busse
+            </a>
+          </footer>
+        </Row>
       </Container>
     );
   }
