@@ -157,7 +157,17 @@ class App extends React.Component {
   render() {
     return (
       <Container id='container' fluid>
-        <h1>Pomodoro Clock</h1>
+        <Row>
+          <h1>
+            <img
+              src={require("./pomodoro.png")}
+              alt='tomato'
+              height='50px'
+              width='50px'
+            />{" "}
+            Pomodoro Clock
+          </h1>
+        </Row>
         <Row>
           <Col xs={12} sm={4}>
             <SessionLength
