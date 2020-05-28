@@ -1,23 +1,27 @@
 {
   "files": {
-    "main.css": "/Pomodoro-Clock/static/css/main.9d66e75d.chunk.css",
-    "main.js": "/Pomodoro-Clock/static/js/main.61dbcfc7.chunk.js",
-    "main.js.map": "/Pomodoro-Clock/static/js/main.61dbcfc7.chunk.js.map",
+    "main.css": "/Pomodoro-Clock/static/css/main.304dddc3.chunk.css",
+    "main.js": "/Pomodoro-Clock/static/js/main.e14df154.chunk.js",
+    "main.js.map": "/Pomodoro-Clock/static/js/main.e14df154.chunk.js.map",
     "runtime-main.js": "/Pomodoro-Clock/static/js/runtime-main.d62db2d2.js",
     "runtime-main.js.map": "/Pomodoro-Clock/static/js/runtime-main.d62db2d2.js.map",
-    "static/js/2.72c0938d.chunk.js": "/Pomodoro-Clock/static/js/2.72c0938d.chunk.js",
-    "static/js/2.72c0938d.chunk.js.map": "/Pomodoro-Clock/static/js/2.72c0938d.chunk.js.map",
+    "static/css/2.af3c1da9.chunk.css": "/Pomodoro-Clock/static/css/2.af3c1da9.chunk.css",
+    "static/js/2.4fd8cc30.chunk.js": "/Pomodoro-Clock/static/js/2.4fd8cc30.chunk.js",
+    "static/js/2.4fd8cc30.chunk.js.map": "/Pomodoro-Clock/static/js/2.4fd8cc30.chunk.js.map",
     "index.html": "/Pomodoro-Clock/index.html",
-    "precache-manifest.951f878134771cfadfcc9e91cef47760.js": "/Pomodoro-Clock/precache-manifest.951f878134771cfadfcc9e91cef47760.js",
+    "precache-manifest.409c86f992f3bee1528c86710f25359f.js": "/Pomodoro-Clock/precache-manifest.409c86f992f3bee1528c86710f25359f.js",
     "service-worker.js": "/Pomodoro-Clock/service-worker.js",
-    "static/css/main.9d66e75d.chunk.css.map": "/Pomodoro-Clock/static/css/main.9d66e75d.chunk.css.map",
-    "static/js/2.72c0938d.chunk.js.LICENSE.txt": "/Pomodoro-Clock/static/js/2.72c0938d.chunk.js.LICENSE.txt",
-    "static/media/BeepSound.wav": "/Pomodoro-Clock/static/media/BeepSound.988833bf.wav"
+    "static/css/2.af3c1da9.chunk.css.map": "/Pomodoro-Clock/static/css/2.af3c1da9.chunk.css.map",
+    "static/css/main.304dddc3.chunk.css.map": "/Pomodoro-Clock/static/css/main.304dddc3.chunk.css.map",
+    "static/js/2.4fd8cc30.chunk.js.LICENSE.txt": "/Pomodoro-Clock/static/js/2.4fd8cc30.chunk.js.LICENSE.txt",
+    "static/media/BeepSound.wav": "/Pomodoro-Clock/static/media/BeepSound.988833bf.wav",
+    "static/media/index.css": "/Pomodoro-Clock/static/media/NovaCut-Regular.f242da80.ttf"
   },
   "entrypoints": [
     "static/js/runtime-main.d62db2d2.js",
-    "static/js/2.72c0938d.chunk.js",
-    "static/css/main.9d66e75d.chunk.css",
-    "static/js/main.61dbcfc7.chunk.js"
+    "static/css/2.af3c1da9.chunk.css",
+    "static/js/2.4fd8cc30.chunk.js",
+    "static/css/main.304dddc3.chunk.css",
+    "static/js/main.e14df154.chunk.js"
   ]
 }
