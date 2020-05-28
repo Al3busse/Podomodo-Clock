@@ -157,9 +157,9 @@ class App extends React.Component {
   render() {
     return (
       <Container id='container' fluid>
-        <h2>Pomodoro Clock</h2>
+        <h1>Pomodoro Clock</h1>
         <Row>
-          <Col>
+          <Col xs={12} sm={4}>
             <SessionLength
               sessionLength={this.state.sessionLength}
               increaseSession={this.onIncreaseSessionLength}
@@ -167,7 +167,7 @@ class App extends React.Component {
               timerRunning={this.state.timerRunning}
             />
           </Col>
-          <Col>
+          <Col xs={12} sm={4}>
             <BreakLength
               breakLength={this.state.breakLength}
               increaseBreak={this.onIncreaseBreakLength}
@@ -175,7 +175,7 @@ class App extends React.Component {
               timerRunning={this.state.timerRunning}
             />
           </Col>
-          <Col>
+          <Col xs={12} sm={4}>
             <LongBreakLength
               longBreakLength={this.state.longBreakLength}
               increaseLongBreak={this.onIncreaseLongBreakLength}
