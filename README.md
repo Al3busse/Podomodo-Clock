@@ -1,4 +1,4 @@
-# Pomodoro Clock (under development)
+# Pomodoro Clock
 
 A simple project created with React for the [FreeCodeCamp](https://www.freecodecamp.org/) Front End Certificate
 
